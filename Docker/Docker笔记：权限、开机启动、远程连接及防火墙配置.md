@@ -36,6 +36,10 @@ $sudo usermod -aG docker $USER
 - `logout`后重新登入使群组设置生效。虚拟机需要重新启动使设置生效。
 - 确定你可以不使用`sudo`命令使用`docker`
 
+```
+$ docker run hello-world
+```
+
 如果在增加用户组之前就使用命令行运行`docker`，并且是加了`sudo`的，那么可能会造成下面的错误。
 
 ```
