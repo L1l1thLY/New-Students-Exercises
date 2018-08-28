@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
 # 载入iris数据
 def load_file_data(file_path):
     return np.loadtxt(file_path, dtype=float, comments='@', delimiter=',')
@@ -83,24 +82,6 @@ def k_means(dataset, k):
     return tag_vector
 
 
-#
-# def show(DataSet, cluster_Data):
-#     df = pd.DataFrame(DataSet, index=cluster_Data[:,0], columns=['x1','x2'])
-#     df1 = df[df.index==0]
-#     df2 = df[df.index==1]
-#     df3 = df[df.index==2]
-#     df4 = df[df.index==3]
-#     plt.figure(figsize=(10,8), dpi=80)
-#     axes = plt.subplot()
-#     type1 = axes.scatter(df1.loc[:,['x1']],  df1.loc[:,['x2']], s=50, c='red', marker='d')
-#     type2 = axes.scatter(df2.loc[:,['x1']], df2.loc[:,['x2']], s=50, c='green', marker='*')
-#     type3 = axes.scatter(df3.loc[:,['x1']], df3.loc[:,['x2']], s=50, c='brown', marker='p')
-#     type4 = axes.scatter(df4.loc[:,['x1']], df4.loc[:,['x2']], s=50, c='black')
-#     type_center = axes.scatter(Center[:,0], Center[:,1], s=40, c='blue')
-#     plt.xlabel('x', fontsize=16)
-#     plt.ylabel('y', fontsize=16)
-#     axes.legend((type1, type2, type3, type4, type_center),('0','1','2','3','center'), loc=1)
-#     plt.show()
 
 def test_function():
     test_dis = np.array([[1,2,3],
@@ -119,7 +100,12 @@ def test_function():
 
 if __name__ == '__main__':
     data = load_file_data("./TestData/iris.txt")
+    #plt.scatter(data[:, 2], data[:, 3], s=10, c=data[:, 4])
+
     solved = presolve_data(data)
     result = k_means(dataset=solved, k=3)
-    print(result)
+    for i, value in enumerate(result):
+        print("The data ", i , "is", value, "class")
 
+    plt.scatter(data[:, 2], data[:, 3], s=10, c=(result[:, 0] + 2))
+    plt.show()
